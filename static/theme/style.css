@@ -1,0 +1,97 @@
+.nav a {
+	font-size:18px;
+	font-weight:bold;
+	padding-left:30px;
+	padding-right:30px;
+}
+.nav a .glyphicon{
+	font-size:14px;
+	padding-right:10px;
+}
+.content {
+	
+}
+.cta {
+	text-align: center;
+	margin: 40px auto 40px auto;
+}
+.composeForm .btn {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.multiSelectButton {
+	width:100%;
+	font-size:18px !important;
+}
+.phone-number{
+	font-size:14px;
+	opacity: 0.5;
+}
+
+.elapsed-time{
+	margin-left: 10px;
+	font-style:italic;
+	color:gray;
+}
+
+
+
+/* Boostrap Callouts */
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+	text-align: left;
+}
+.bs-callout h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+.bs-callout code {
+    border-radius: 3px;
+}
+.bs-callout+.bs-callout {
+    margin-top: -5px;
+}
+.bs-callout-default {
+    border-left-color: #777;
+}
+.bs-callout-default h3 {
+    color: #777;
+}
+.bs-callout-primary {
+    border-left-color: #428bca;
+}
+.bs-callout-primary h3 {
+    color: #428bca;
+}
+.bs-callout-success {
+    border-left-color: #5cb85c;
+}
+.bs-callout-success h3 {
+    color: #5cb85c;
+}
+.bs-callout-danger {
+    border-left-color: #d9534f;
+}
+.bs-callout-danger h3 {
+    color: #d9534f;
+}
+.bs-callout-warning {
+    border-left-color: #f0ad4e;
+}
+.bs-callout-warning h3 {
+    color: #f0ad4e;
+}
+.bs-callout-info {
+    border-left-color: #5bc0de;
+}
+.bs-callout-info h3 {
+    color: #5bc0de;
+}
+/* End Bootstrap Callouts */

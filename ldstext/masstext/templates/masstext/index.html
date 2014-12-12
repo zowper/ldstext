@@ -1,0 +1,82 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" id="ng-app">
+	<head>
+		<title>LDSText.org</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" type="image/x-icon" href="/static/theme/favicon.ico">
+
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/static/theme/style.css">
+		<link rel="stylesheet" href="/static/admin/includes/angular-multi-select.css">
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+		<script src="/static/admin/includes/composeController.js"></script>
+		<script src="/static/admin/includes/angular-multi-select.js"></script> 
+
+	</head>
+
+	<body ng-controller="main">
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>                        
+					</button>
+					<a class="navbar-brand" href="#" style="padding:5px 30px;"><img src="/static/theme/logo.png"></a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/admin"><span class="glyphicon glyphicon-inbox"></span>Inbox</a></li>
+						<li><a href="/admin/compose"><span class="glyphicon glyphicon-envelope"></span>New Text</a></li>
+						<li><a href="/admin/contacts"><span class="glyphicon glyphicon-user"></span>Contacts</a></li>
+						<li><a href="/admin/settings"><span class="glyphicon glyphicon-cog"></span>Settings</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right dropdown">
+						<li><a href="/"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="content">
+			<div class="container cta">
+				{% if thread_list %}
+					{% for thread in thread_list %}
+						<div class="bs-callout {% if thread.read %}bs-callout-default{% else %}bs-callout-info{% endif %}">
+							<h3>{{thread.recipient.preferred_first_name}} {{thread.recipient.last_name}} <span class="phone-number">{{ thread.recipient.getPhoneString }}</span></h3>
+							{% for message in thread.getMessages %}
+								<p><b>
+								{% if message.author %}
+									{{ message.author.preferred_first_name }}
+								{% else %}
+									{{ thread.recipient.preferred_first_name }}
+								{% endif %}
+								: </b> {{ message.content }} <span class="elapsed-time">{{ message.creation_date | date:"M-d h:i A" }}</span></p>
+							{% endfor %}
+							<p>
+								<form role="form">
+									<div class="form-group">
+										<input type="text" class="input col-sm-9"  ng-model="textContent" ng-trim="false" rows="1"  maxlength="160" id="comment" placeholder="Write a reply...">
+										<label class="col-sm-1" style="color:gray;font-weight:bold;font-size:18px;">{% verbatim %}{{160 - textContent.length}}{% endverbatim %}</label>
+										<button type="button" class="btn btn-info col-sm-2">
+											<span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;Send
+										</button>
+									</div>
+								</form>
+							</p>
+							<br>
+						</div>
+					{% endfor %}
+				{% else %}
+					<div class="bs-callout bs-callout-info">
+						<h2 align="center">No texts to display. :)</h2>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	</body>
+</html>
